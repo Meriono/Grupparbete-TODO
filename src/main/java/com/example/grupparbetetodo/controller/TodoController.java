@@ -28,6 +28,10 @@ public class TodoController {
         return String.format("Todo with id:%s have changed status", todoId);
     }
 
-   // @GetMapping("/delete")
+   @GetMapping("/delete")
+    public String deleteById(@RequestParam Long todoId){
+        todoRepository.deleteById(todoId);
+       return String.format("Todo with id:%s is now deleted", todoId);
+   }
 
 }
