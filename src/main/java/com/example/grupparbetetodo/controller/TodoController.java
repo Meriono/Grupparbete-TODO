@@ -2,41 +2,38 @@ package com.example.grupparbetetodo.controller;
 
 import com.example.grupparbetetodo.model.Todo;
 import com.example.grupparbetetodo.repository.TodoRepository;
+import com.example.grupparbetetodo.service.TodoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping(path = "/todo")
 public class TodoController {
 
-    @Autowired
-    private TodoRepository todoRepository;
+    private final TodoService todoService;
+
 
     @GetMapping("/all")
     public Iterable<Todo> getAll() {
-        return todoRepository.findAll();
+        return todoService.getAll();
     }
 
     @GetMapping("/update")
     public String updateStatus(@RequestParam Long todoId, boolean doneStatus) {
-        todoRepository.findById(todoId).get().setDone(doneStatus);
+        return todoService.updateStatus(todoId,doneStatus);
 
-        return String.format("Todo with id:%s have changed status", todoId);
     }
 
    @GetMapping("/delete")
     public String deleteById(@RequestParam Long todoId){
-        todoRepository.deleteById(todoId);
-       return String.format("Todo with id:%s is now deleted", todoId);
+       return todoService.deleteById(todoId);
    }
 
    @PostMapping("/add")
     public String addTodo(@RequestBody Todo todo){
-
-        todoRepository.save(todo);
-
-        return String.format("%s \nis now added to the list", todo.getTodo());
+      return todoService.addTodo(todo);
    }
 
 }
