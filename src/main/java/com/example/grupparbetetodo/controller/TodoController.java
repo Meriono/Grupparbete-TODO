@@ -3,10 +3,7 @@ package com.example.grupparbetetodo.controller;
 import com.example.grupparbetetodo.model.Todo;
 import com.example.grupparbetetodo.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -32,6 +29,14 @@ public class TodoController {
     public String deleteById(@RequestParam Long todoId){
         todoRepository.deleteById(todoId);
        return String.format("Todo with id:%s is now deleted", todoId);
+   }
+
+   @PostMapping("/add")
+    public String addTodo(@RequestBody Todo todo){
+
+        todoRepository.save(todo);
+
+        return String.format("%s \nis now added to the list", todo.getTodo());
    }
 
 }
