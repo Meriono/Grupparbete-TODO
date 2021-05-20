@@ -59,7 +59,7 @@ public class TodoServiceTest {
         deleteTodo.setTodo(expectedTodo);
         deleteTodo.setDone(expectedDone);
 
-        when(mockRepo.save(any())).thenReturn(deleteTodo);
+        when(mockRepo.save(deleteTodo)).thenReturn(deleteTodo);
 
         Todo actualTodo = todoService.addTodo(deleteTodo);
         assertEquals(deleteTodo.getTodo(), actualTodo.getTodo());
@@ -78,7 +78,7 @@ public class TodoServiceTest {
         saveTodo.setTodo(expectedTodo);
         saveTodo.setDone(expectedDone);
 
-        when(mockRepo.save(any())).thenReturn(saveTodo);
+        when(mockRepo.save(saveTodo)).thenReturn(saveTodo);
 
         Todo actualTodo = todoService.addTodo(saveTodo);
         assertEquals(saveTodo.getTodo(), actualTodo.getTodo());
