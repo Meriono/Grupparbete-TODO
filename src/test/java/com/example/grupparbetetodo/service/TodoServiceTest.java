@@ -46,7 +46,7 @@ public class TodoServiceTest {
 
     @Test
     void deleteById() {
-        String expectedTodo = "hejsan";
+        String expectedTodo = "Ta bort denna";
         boolean expectedDone = false;
 
         Todo deleteTodo = new Todo();
@@ -54,6 +54,10 @@ public class TodoServiceTest {
         deleteTodo.setTodo(expectedTodo);
         deleteTodo.setDone(expectedDone);
 
+        when(mockRepo.save(any())).thenReturn(deleteTodo);
+
+        Todo actualTodo = todoService.addTodo(deleteTodo);
+        assertEquals(deleteTodo.getTodo(), actualTodo.getTodo());
 
         mockRepo.deleteById(deleteTodo.getId());
 
