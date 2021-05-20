@@ -13,7 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -46,6 +46,18 @@ public class TodoServiceTest {
 
     @Test
     void deleteById() {
+        String expectedTodo = "hejsan";
+        boolean expectedDone = false;
+
+        Todo deleteTodo = new Todo();
+        deleteTodo.setId(1L);
+        deleteTodo.setTodo(expectedTodo);
+        deleteTodo.setDone(expectedDone);
+
+
+        mockRepo.deleteById(deleteTodo.getId());
+
+        verify(mockRepo, times(1)).deleteById(deleteTodo.getId());
     }
 
     @Test
