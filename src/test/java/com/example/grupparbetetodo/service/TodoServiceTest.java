@@ -8,6 +8,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.when;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +39,16 @@ public class TodoServiceTest {
 
     @Test
     void getAll() {
+        Todo dishes = new Todo(1L,"Do the dishes",true);
+        Todo garbage = new Todo(2L,"Take out the stinky garbage",false);
+        Todo laundry = new Todo(3L,"Do the laundry",true);
+        Todo cookDinner = new Todo(4L,"Cook delicious dinner",false);
+
+        when(mockRepo.findAll()).thenReturn(Arrays.asList(dishes, garbage, laundry, cookDinner));
+        List<Todo> actual = (List<Todo>) todoService.getAll();
+
+        assertEquals(4, actual.size());
+        assertNotEquals(5, actual.size());
     }
 
     @Test
