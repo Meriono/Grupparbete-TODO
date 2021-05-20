@@ -36,4 +36,8 @@ public class TodoController {
       return todoService.addTodo(todo);
    }
 
+    @GetMapping("/findByDone")
+    public Iterable<Todo> getAllByDone(Boolean done) {
+        return todoService.findAllByDone(done);
+    }
 }
