@@ -23,7 +23,10 @@ public class TodoService {
 
 
     public String updateStatus(Long todoId, boolean doneStatus) {
-        todoRepository.findById(todoId).get().setDone(doneStatus);
+
+        Todo todo = todoRepository.getTodoById(todoId);
+        todo.setDone(doneStatus);
+        todoRepository.save(todo);
 
         return String.format("Todo with id:%s have changed status", todoId);
     }
