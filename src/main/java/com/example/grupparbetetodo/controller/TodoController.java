@@ -26,9 +26,9 @@ public class TodoController {
 
     }
 
-   @GetMapping("/delete")
-    public String deleteById(@RequestParam Long todoId){
-       return todoService.deleteById(todoId);
+   @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id){
+       return todoService.deleteById(id);
    }
 
    @PostMapping("/add")
