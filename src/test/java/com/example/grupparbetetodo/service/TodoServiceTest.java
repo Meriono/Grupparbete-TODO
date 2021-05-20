@@ -51,6 +51,22 @@ public class TodoServiceTest {
 
     @Test
     void deleteById() {
+        String expectedTodo = "Ta bort denna";
+        boolean expectedDone = false;
+
+        Todo deleteTodo = new Todo();
+        deleteTodo.setId(1L);
+        deleteTodo.setTodo(expectedTodo);
+        deleteTodo.setDone(expectedDone);
+
+        when(mockRepo.save(deleteTodo)).thenReturn(deleteTodo);
+
+        Todo actualTodo = todoService.addTodo(deleteTodo);
+        assertEquals(deleteTodo.getTodo(), actualTodo.getTodo());
+
+        mockRepo.deleteById(deleteTodo.getId());
+
+        verify(mockRepo, times(1)).deleteById(deleteTodo.getId());
     }
 
     @Test
@@ -62,7 +78,7 @@ public class TodoServiceTest {
         saveTodo.setTodo(expectedTodo);
         saveTodo.setDone(expectedDone);
 
-        when(mockRepo.save(any())).thenReturn(saveTodo);
+        when(mockRepo.save(saveTodo)).thenReturn(saveTodo);
 
         Todo actualTodo = todoService.addTodo(saveTodo);
         assertEquals(saveTodo.getTodo(), actualTodo.getTodo());
