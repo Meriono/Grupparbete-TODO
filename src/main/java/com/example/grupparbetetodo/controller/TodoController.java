@@ -20,15 +20,15 @@ public class TodoController {
         return todoService.getAll();
     }
 
-    @GetMapping("/update")
-    public String updateStatus(@RequestParam Long todoId, boolean doneStatus) {
-        return todoService.updateStatus(todoId,doneStatus);
+    @GetMapping("/update/{id}/{doneStatus}")
+    public String updateStatus(@PathVariable Long id, @PathVariable boolean doneStatus) {
+        return todoService.updateStatus(id, doneStatus);
 
     }
 
-   @GetMapping("/delete")
-    public String deleteById(@RequestParam Long todoId){
-       return todoService.deleteById(todoId);
+   @DeleteMapping("/delete/{id}")
+    public String deleteById(@PathVariable Long id){
+       return todoService.deleteById(id);
    }
 
    @PostMapping("/add")
@@ -36,8 +36,8 @@ public class TodoController {
       return todoService.addTodo(todo);
    }
 
-    @GetMapping("/findByDone")
-    public Iterable<Todo> getAllByDone(Boolean done) {
-        return todoService.findAllByDone(done);
+    @GetMapping("/findByDone/{doneStatus}")
+    public Iterable<Todo> getAllByDone(@PathVariable boolean doneStatus) {
+        return todoService.findAllByDone(doneStatus);
     }
 }
