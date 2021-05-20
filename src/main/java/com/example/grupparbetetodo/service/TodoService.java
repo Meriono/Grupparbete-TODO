@@ -9,13 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * created by Mimi Santana
- * Date: 2021-05-19
- * Time: 15:49
- * Project: Grupparbete-TODO
- * Copyright: MIT
- */
+
 @RequiredArgsConstructor
 @Service
 public class TodoService {
