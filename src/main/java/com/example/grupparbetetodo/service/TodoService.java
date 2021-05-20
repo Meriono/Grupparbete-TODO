@@ -22,25 +22,25 @@ public class TodoService {
     }
 
 
-    public String updateStatus(@RequestParam Long todoId, boolean doneStatus) {
+    public String updateStatus(Long todoId, boolean doneStatus) {
         todoRepository.findById(todoId).get().setDone(doneStatus);
 
         return String.format("Todo with id:%s have changed status", todoId);
     }
 
 
-    public String deleteById(@RequestParam Long todoId){
+    public String deleteById(Long todoId){
         todoRepository.deleteById(todoId);
         return String.format("Todo with id:%s is now deleted", todoId);
     }
 
 
-    public Todo addTodo(@RequestBody Todo todo){
+    public Todo addTodo(Todo todo){
 
         return todoRepository.save(todo);
     }
 
-    public Iterable<Todo> findAllByDone(@RequestParam boolean done){
+    public Iterable<Todo> findAllByDone(boolean done){
         return todoRepository.findAllByDone(done);
     }
 
