@@ -32,7 +32,7 @@ public class TodoController {
    }
 
    @PostMapping("/add")
-    public String addTodo(@RequestBody Todo todo){
+    public Todo addTodo(@RequestBody Todo todo){
       return todoService.addTodo(todo);
    }
 

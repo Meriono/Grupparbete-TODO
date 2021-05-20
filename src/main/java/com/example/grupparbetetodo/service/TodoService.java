@@ -41,11 +41,11 @@ public class TodoService {
     }
 
 
-    public String addTodo(@RequestBody Todo todo){
+    public Todo addTodo(@RequestBody Todo todo){
 
-        todoRepository.save(todo);
+        return todoRepository.save(todo);
 
-        return String.format("%s \nis now added to the list", todo.getTodo());
+       // return String.format("%s \nis now added to the list", todo.getTodo());
     }
 
     public Iterable<Todo> findAllByDone(@RequestParam boolean done){

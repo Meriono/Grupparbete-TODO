@@ -15,14 +15,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
 
-/**
- * created by Mimi Santana
- * Date: 2021-05-19
- * Time: 16:00
- * Project: Grupparbete-TODO
- * Copyright: MIT
- */
 @ExtendWith(MockitoExtension.class)
 public class TodoServiceTest {
 
@@ -50,6 +44,17 @@ public class TodoServiceTest {
 
     @Test
     void addTodo() {
+        String expectedTodo = "hejsan";
+        boolean expectedDone = false;
+
+        Todo saveTodo = new Todo();
+        saveTodo.setTodo(expectedTodo);
+        saveTodo.setDone(expectedDone);
+
+        when(mockRepo.save(any())).thenReturn(saveTodo);
+
+        Todo actualTodo = todoService.addTodo(saveTodo);
+        assertEquals(saveTodo.getTodo(), actualTodo.getTodo());
     }
 
     // Get a list of all todos thats done = true
