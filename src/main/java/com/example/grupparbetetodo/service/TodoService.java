@@ -44,8 +44,6 @@ public class TodoService {
     public Todo addTodo(@RequestBody Todo todo){
 
         return todoRepository.save(todo);
-
-       // return String.format("%s \nis now added to the list", todo.getTodo());
     }
 
     public Iterable<Todo> findAllByDone(@RequestParam boolean done){
