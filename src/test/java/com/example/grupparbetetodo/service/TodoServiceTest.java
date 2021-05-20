@@ -42,4 +42,14 @@ public class TodoServiceTest {
     @Test
     void addTodo() {
     }
+
+    // Get a list of all todos thats done = true
+    @Test
+    void findAllByDoneTrue() {
+    }
+
+    // Get a list of all todos thats done = false aka not done
+    @Test
+    void findAllByDoneFalse() {
+    }
 }
