@@ -48,5 +48,8 @@ public class TodoService {
         return String.format("%s \nis now added to the list", todo.getTodo());
     }
 
+    public Iterable<Todo> findAllByDone(@RequestParam boolean done){
+        return todoRepository.findAllByDone(done);
+    }
 
 }
