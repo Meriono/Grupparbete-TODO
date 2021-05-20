@@ -20,9 +20,9 @@ public class TodoController {
         return todoService.getAll();
     }
 
-    @GetMapping("/update")
-    public String updateStatus(@RequestParam Long todoId, boolean doneStatus) {
-        return todoService.updateStatus(todoId,doneStatus);
+    @GetMapping("/update/{id}/{doneStatus}")
+    public String updateStatus(@PathVariable Long id, @PathVariable boolean doneStatus) {
+        return todoService.updateStatus(id, doneStatus);
 
     }
 
