@@ -11,12 +11,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.mockito.Mockito.when;
-
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 public class TodoServiceTest {
@@ -47,6 +43,18 @@ public class TodoServiceTest {
 
     @Test
     void updateStatus() {
+        long todoId = 1L;
+        Todo dishes = new Todo(todoId,"Do the dishes",false);
+
+        when(mockRepo.getTodoById(todoId)).thenReturn(dishes);
+        when(todoService.getAll()).thenReturn(List.of(dishes));
+
+        todoService.updateStatus(dishes.getId(),true);
+        List<Todo> actual = (List<Todo>) todoService.getAll();
+        Todo updatedDishes = actual.get(0);
+
+        assertTrue(updatedDishes.isDone());
+        assertEquals(todoId, updatedDishes.getId());
     }
 
     @Test
