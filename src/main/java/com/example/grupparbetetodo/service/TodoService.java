@@ -9,13 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- * created by Mimi Santana
- * Date: 2021-05-19
- * Time: 15:49
- * Project: Grupparbete-TODO
- * Copyright: MIT
- */
+
 @RequiredArgsConstructor
 @Service
 public class TodoService {
@@ -28,25 +22,29 @@ public class TodoService {
     }
 
 
-    public String updateStatus(@RequestParam Long todoId, boolean doneStatus) {
-        todoRepository.findById(todoId).get().setDone(doneStatus);
+    public String updateStatus(Long todoId, boolean doneStatus) {
+
+        Todo todo = todoRepository.getTodoById(todoId);
+        todo.setDone(doneStatus);
+        todoRepository.save(todo);
 
         return String.format("Todo with id:%s have changed status", todoId);
     }
 
 
-    public String deleteById(@RequestParam Long todoId){
+    public String deleteById(Long todoId){
         todoRepository.deleteById(todoId);
         return String.format("Todo with id:%s is now deleted", todoId);
     }
 
 
-    public String addTodo(@RequestBody Todo todo){
+    public Todo addTodo(Todo todo){
 
-        todoRepository.save(todo);
-
-        return String.format("%s \nis now added to the list", todo.getTodo());
+        return todoRepository.save(todo);
     }
 
+    public Iterable<Todo> findAllByDone(boolean done){
+        return todoRepository.findAllByDone(done);
+    }
 
 }
