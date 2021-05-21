@@ -47,4 +47,8 @@ public class TodoService {
         return todoRepository.findAllByDone(done);
     }
 
+    public Todo findById(Long todoId){
+        return todoRepository.findById(todoId).get();
+    }
+
 }

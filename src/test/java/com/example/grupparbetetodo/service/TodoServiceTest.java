@@ -10,9 +10,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import static org.mockito.Mockito.*;
@@ -107,4 +108,39 @@ public class TodoServiceTest {
         verify(mockRepo).findAllByDone(false);
         assertEquals(mockRepo.findAllByDone(false), actual);
     }
+
+    @Test
+    void findTodoByIdThrows() {
+        /*Todo todo = new Todo(1L,"test",false);
+
+
+        when(mockRepo.findById(1L)).thenReturn(Optional.of(todo));
+        todoService.findById(1L);
+        assertThrows(NoSuchElementException.class, ()->todoService.findById(100L));*/
+
+      /*
+      public class NoSuchElementException
+      Thrown by various accessor methods to indicate that the element being requested does not exist.*/
+
+    }
+
+   /* @Test
+    void updateTodo(){
+
+        Todo expected = new Todo(1L,"todo",false);
+        Todo expectedUpdates = new Todo(1L,"update the todo",false);
+        todoService.addTodo(expected);
+
+
+        when(mockRepo.save(expected)).thenReturn(expected);
+
+        System.out.println(expected);
+
+        Todo actualTodo = todoService.updateTodo(expectedUpdates);
+        System.out.println(actualTodo);
+
+       // assertEquals(expected.getTodo(), actualTodo.getTodo());
+
+    }*/
+
 }
