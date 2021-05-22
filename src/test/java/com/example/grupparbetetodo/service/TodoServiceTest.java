@@ -136,5 +136,11 @@ public class TodoServiceTest {
 
     }
 
+    @Test
+    void findTodobyIdThrows(){
+
+        assertThrows(NoSuchElementException.class, ()-> todoService.findById(5L));
+    }
+
 
 }
