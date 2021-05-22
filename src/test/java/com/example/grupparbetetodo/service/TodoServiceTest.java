@@ -142,5 +142,11 @@ public class TodoServiceTest {
         assertThrows(NullPointerException.class, () -> todoService.updateTodo(falseTodo));
     }
 
+    @Test
+    void findTodobyIdThrows(){
+
+        assertThrows(NoSuchElementException.class, ()-> todoService.findById(5L));
+    }
+
 
 }
