@@ -137,6 +137,12 @@ public class TodoServiceTest {
     }
 
     @Test
+    void wrongInputOnUpdateTest(){
+        Todo falseTodo = new Todo(7L,"wash black clothing",false);
+        assertThrows(NullPointerException.class, () -> todoService.updateTodo(falseTodo));
+    }
+
+    @Test
     void findTodobyIdThrows(){
 
         assertThrows(NoSuchElementException.class, ()-> todoService.findById(5L));
