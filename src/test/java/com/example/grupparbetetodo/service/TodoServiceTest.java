@@ -120,17 +120,15 @@ public class TodoServiceTest {
     }
 
     @Test
-    void updateTodoTextTest(){
-
-
-        // ändra namn på saker
+    void updateTodoTest(){
         long todoId = 1L;
         Todo dishes = new Todo(todoId,"Do the dishes",false);
+        Todo newDishes = new Todo(todoId,"clean dishes",true);
 
         when(mockRepo.getTodoById(todoId)).thenReturn(dishes);
         when(todoService.getAll()).thenReturn(List.of(dishes));
 
-        todoService.updateTodoText(dishes.getId(),"sort dishes");
+        todoService.updateTodo(newDishes);
         List<Todo> actual = (List<Todo>) todoService.getAll();
         Todo updatedDishes = actual.get(0);
 
