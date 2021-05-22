@@ -47,10 +47,9 @@ public class TodoService {
         return todoRepository.findAllByDone(done);
     }
 
-    public Todo updateTodo(Todo todo){
-      Todo updateTodo = todoRepository.getTodoById(todo.getId());
-      updateTodo.setTodo(todo.getTodo());
-      updateTodo.setDone(todo.isDone());
+    public Todo updateTodoText(Long id, String text){
+      Todo updateTodo = todoRepository.getTodoById(id);
+      updateTodo.setTodo(text);
       todoRepository.save(updateTodo);
 
       return updateTodo;

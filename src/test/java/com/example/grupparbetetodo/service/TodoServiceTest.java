@@ -119,5 +119,24 @@ public class TodoServiceTest {
         assertEquals(mockRepo.findAllByDone(false), actual);
     }
 
+    @Test
+    void updateTodoTextTest(){
+
+
+        // ändra namn på saker
+        long todoId = 1L;
+        Todo dishes = new Todo(todoId,"Do the dishes",false);
+
+        when(mockRepo.getTodoById(todoId)).thenReturn(dishes);
+        when(todoService.getAll()).thenReturn(List.of(dishes));
+
+        todoService.updateTodoText(dishes.getId(),"sort dishes");
+        List<Todo> actual = (List<Todo>) todoService.getAll();
+        Todo updatedDishes = actual.get(0);
+
+        assertEquals(dishes.getTodo(),updatedDishes.getTodo());
+
+    }
+
 
 }

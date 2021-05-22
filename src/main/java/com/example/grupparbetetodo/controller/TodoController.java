@@ -41,9 +41,9 @@ public class TodoController {
         return todoService.findAllByDone(doneStatus);
     }
 
-    @PostMapping("/update")
-    public Todo updateTodo(@RequestBody Todo todo){
-        return todoService.updateTodo(todo);
+    @PostMapping("/update/{id}/{text}")
+    public Todo updateTodoText(@PathVariable Long id, @PathVariable String text){
+        return todoService.updateTodoText(id,text);
     }
 
     @GetMapping("/findById")
