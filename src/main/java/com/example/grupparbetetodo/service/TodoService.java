@@ -47,6 +47,15 @@ public class TodoService {
         return todoRepository.findAllByDone(done);
     }
 
+    public Todo updateTodo(Todo todo){
+      Todo updateTodo = todoRepository.getTodoById(todo.getId());
+      updateTodo.setTodo(todo.getTodo());
+      updateTodo.setDone(todo.isDone());
+      todoRepository.save(updateTodo);
+
+      return updateTodo;
+    }
+
     public Todo findById(Long todoId){
         return todoRepository.findById(todoId).get();
     }
