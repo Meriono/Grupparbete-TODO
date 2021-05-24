@@ -10,8 +10,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -115,4 +118,35 @@ public class TodoServiceTest {
         verify(mockRepo).findAllByDone(false);
         assertEquals(mockRepo.findAllByDone(false), actual);
     }
+
+    @Test
+    void updateTodoTest(){
+        long todoId = 1L;
+        Todo dishes = new Todo(todoId,"Do the dishes",false);
+        Todo newDishes = new Todo(todoId,"clean dishes",true);
+
+        when(mockRepo.getTodoById(todoId)).thenReturn(dishes);
+        when(todoService.getAll()).thenReturn(List.of(dishes));
+
+        todoService.updateTodo(newDishes);
+        List<Todo> actual = (List<Todo>) todoService.getAll();
+        Todo updatedDishes = actual.get(0);
+
+        assertEquals(dishes.getTodo(),updatedDishes.getTodo());
+
+    }
+
+    @Test
+    void wrongInputOnUpdateTest(){
+        Todo falseTodo = new Todo(7L,"wash black clothing",false);
+        assertThrows(NullPointerException.class, () -> todoService.updateTodo(falseTodo));
+    }
+
+    @Test
+    void findTodobyIdThrows(){
+
+        assertThrows(NoSuchElementException.class, ()-> todoService.findById(5L));
+    }
+
+
 }

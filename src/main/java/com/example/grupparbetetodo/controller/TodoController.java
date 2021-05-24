@@ -40,4 +40,16 @@ public class TodoController {
     public Iterable<Todo> getAllByDone(@PathVariable boolean doneStatus) {
         return todoService.findAllByDone(doneStatus);
     }
+
+    @PostMapping("/update")
+    public Todo updateTodoText(@RequestBody Todo todo){
+        return todoService.updateTodo(todo);
+    }
+
+    @GetMapping("/findById")
+    public Todo findById(@PathVariable Long id){
+        return todoService.findById(id);
+    }
+
+
 }
