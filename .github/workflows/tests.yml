@@ -3,6 +3,9 @@ name: Run tests
 on:
   workflow_dispatch:
   push:
+    branches:
+      - 'master'
+      - 'develop'
 
 jobs:
   tests:
