@@ -1,6 +1,6 @@
 package com.example.grupparbetetodo.service;
-
 import com.example.grupparbetetodo.model.Todo;
+
 import com.example.grupparbetetodo.repository.TodoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
